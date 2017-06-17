@@ -26,6 +26,7 @@ group :test do
   gem 'faker', '~> 1.7', '>= 1.7.3'
   gem 'factory_girl_rails', '~> 4.8'
   gem 'database_cleaner', '~> 1.6', '>= 1.6.1'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

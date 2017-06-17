@@ -12,10 +12,10 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
-  # Factory Girl config
+  # Factory Girl
   config.include FactoryGirl::Syntax::Methods
 
-  # Database cleaner config
+  # Database cleaner
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
@@ -23,5 +23,13 @@ RSpec.configure do |config|
 
   config.around(:each) do |example|
     DatabaseCleaner.cleaning { example.run }
+  end
+
+  # Shoulda Matchers
+  Shoulda::Matchers.configure do |cfg|
+    cfg.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
   end
 end
