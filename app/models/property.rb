@@ -1,4 +1,7 @@
 class Property < ApplicationRecord
+  validates_presence_of :x, :y, :title, :price, :description,
+                        :beds, :baths, :square_meters
+
   validates :beds, numericality: { greater_than_or_equal_to: 1,
                                    less_than_or_equal_to: 5 }
 
