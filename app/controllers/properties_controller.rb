@@ -1,26 +1,18 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show]
-
   # POST /properties
   def create
     @property = Property.new(property_params)
+    @property.save
 
-    if @property.save
-      render json: @property, status: :created, location: @property
-    else
-      render json: @property.errors, status: :unprocessable_entity
-    end
+    respond_with @property, location: @property, status: :created
   end
 
   def show
-    render json: @property, status: :success
+    @property = Property.find(params[:id])
+    respond_with @property, location: @property
   end
 
   private
-
-  def set_property
-    @property = Property.find(params[:id])
-  end
 
   def property_params
     params.require(:property).permit(:x, :y, :title, :price, :description,
