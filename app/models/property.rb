@@ -1,4 +1,9 @@
 class Property < ApplicationRecord
+  after_validation :set_locations, on: [:create]
+
+  has_many :locations
+  has_many :provinces, through: :locations
+
   validates_presence_of :x, :y, :title, :price, :description,
                         :beds, :baths, :square_meters
 
@@ -10,7 +15,12 @@ class Property < ApplicationRecord
 
   validates :square_meters, numericality: { greater_than_or_equal_to: 20,
                                             less_than_or_equal_to: 240 }
-
   validates_with SpotipposBordersValidator,
                  if: proc { |record| record.x.present? && record.y.present? }
+
+  private
+
+  def set_locations
+    self.provinces = Province.query_by_coordinates(x, y)
+  end
 end
