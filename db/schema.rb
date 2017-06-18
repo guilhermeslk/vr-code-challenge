@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617045452) do
+ActiveRecord::Schema.define(version: 20170618201126) do
+
+  create_table "locations", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "province_id"
+    t.index ["property_id"], name: "index_locations_on_property_id"
+    t.index ["province_id"], name: "index_locations_on_province_id"
+  end
 
   create_table "properties", force: :cascade do |t|
     t.integer "x"
@@ -23,6 +30,14 @@ ActiveRecord::Schema.define(version: 20170617045452) do
     t.integer "square_meters"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.integer "upper_left_boundary_x"
+    t.integer "upper_left_boundary_y"
+    t.integer "bottom_right_boundary_x"
+    t.integer "bottom_right_boundary_y"
   end
 
 end
