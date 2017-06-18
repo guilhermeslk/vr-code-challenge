@@ -1,7 +1,47 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Province.create!(
+  name: 'Gode',
+  upper_left_boundary_x: 0,
+  upper_left_boundary_y: 1000,
+  bottom_right_boundary_x: 600,
+  bottom_right_boundary_y: 500
+)
+
+Province.create!(
+  name: 'Ruja',
+  upper_left_boundary_x: 400,
+  upper_left_boundary_y: 1000,
+  bottom_right_boundary_x: 1100,
+  bottom_right_boundary_y: 500
+)
+
+Province.create!(
+  name: 'Jaby',
+  upper_left_boundary_x: 1100,
+  upper_left_boundary_y: 1000,
+  bottom_right_boundary_x: 1400,
+  bottom_right_boundary_y: 500
+)
+
+Province.create!(
+  name: 'Scavy',
+  upper_left_boundary_x: 0,
+  upper_left_boundary_y: 500,
+  bottom_right_boundary_x: 600,
+  bottom_right_boundary_y: 0
+)
+
+Province.create!(
+  name: 'Groola',
+  upper_left_boundary_x: 600,
+  upper_left_boundary_y: 500,
+  bottom_right_boundary_x: 800,
+  bottom_right_boundary_y: 0
+)
+
+Province.create!(
+  name: 'Nova',
+  upper_left_boundary_x: 800,
+  upper_left_boundary_y: 500,
+  bottom_right_boundary_x: 1400,
+  bottom_right_boundary_y: 0
+)
