@@ -21,6 +21,6 @@ class Property < ApplicationRecord
   private
 
   def set_locations
-    self.provinces = Province.query_by_coordinates(x, y)
+    self.provinces = Province.query_by_property_coordinates(x, y)
   end
 end
