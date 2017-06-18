@@ -10,4 +10,7 @@ class Property < ApplicationRecord
 
   validates :square_meters, numericality: { greater_than_or_equal_to: 20,
                                             less_than_or_equal_to: 240 }
+
+  validates_with SpotipposBordersValidator,
+                 if: proc { |record| record.x.present? && record.y.present? }
 end
