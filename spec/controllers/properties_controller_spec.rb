@@ -20,6 +20,16 @@ RSpec.describe PropertiesController, type: :controller do
   let(:baths) { Faker::Number.between(1, 4) }
   let(:square_meters) { Faker::Number.between(20, 240) }
 
+  describe 'GET #show' do
+    subject { get :show, params: { id: property.id }, format: :json }
+
+    let(:property) { create :property }
+
+    it 'renders a JSON response with the found property' do
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'POST #create' do
     subject { post :create, params: { property: attributes }, format: :json }
 
@@ -57,6 +67,16 @@ RSpec.describe PropertiesController, type: :controller do
         expect(JSON.parse(response.body)['errors']['base'].first)
           .to eq 'outside the borders of Spotippos'
       end
+    end
+  end
+
+  describe 'GET #index' do
+    subject { get :index, format: :json }
+
+    let(:property) { create :property }
+
+    it 'renders a JSON response with a list of found properties' do
+      expect(response).to have_http_status(:ok)
     end
   end
 end
