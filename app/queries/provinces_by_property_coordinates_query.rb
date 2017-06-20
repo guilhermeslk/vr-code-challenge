@@ -8,6 +8,7 @@ class ProvincesByPropertyCoordinatesQuery < BaseQueryObject
     @y = y
   end
 
+  # @return [String]
   def query
     <<-SQL
       upper_left_boundary_x < #{@x} AND

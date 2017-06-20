@@ -12,7 +12,7 @@ class PropertiesByRegionCoordinatesQuery < BaseQueryObject
     @by = by
   end
 
-  # @return [Property::ActiveRecord_Relation]
+  # @see [BaseQueryObject#perform]
   def perform
     relation.joins(:provinces).where(query, provinces_ids: provinces_ids)
   end
