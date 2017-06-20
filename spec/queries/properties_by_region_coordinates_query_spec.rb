@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PropertiesByRegionCoordinatesQuery do
-  subject(:query) do
+  subject(:query_object) do
     described_class.new(
       ax: ax,
       ay: ay,
@@ -16,7 +16,7 @@ RSpec.describe PropertiesByRegionCoordinatesQuery do
   let(:by) { 999 }
 
   describe '#perform' do
-    subject { query.perform }
+    subject { query_object.perform }
 
     let!(:location_1) do
       create :location, property: property_1, province: province_1
@@ -49,5 +49,13 @@ RSpec.describe PropertiesByRegionCoordinatesQuery do
     end
 
     it { is_expected.to eq [property_1, property_2] }
+  end
+
+  describe '#query' do
+    subject { query_object.query }
+
+    it do
+      is_expected.to eq 'provinces.id IN (:provinces_ids)'
+    end
   end
 end

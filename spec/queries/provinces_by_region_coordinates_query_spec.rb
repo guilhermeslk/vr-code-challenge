@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ProvincesByRegionCoordinatesQuery do
-  subject(:query) do
+  subject(:query_object) do
     described_class.new(
       ax: ax,
       ay: ay,
@@ -16,7 +16,7 @@ RSpec.describe ProvincesByRegionCoordinatesQuery do
   let(:by) { 0 }
 
   describe '#perform' do
-    subject { query.perform }
+    subject { query_object.perform }
 
     let(:gode) { create :province, :gode }
     let(:ruja) { create :province, :ruja }
@@ -52,6 +52,21 @@ RSpec.describe ProvincesByRegionCoordinatesQuery do
       let(:by) { 9999 }
 
       it { is_expected.to be_empty }
+    end
+  end
+
+  describe '#query' do
+    subject { query_object.query }
+
+    it do
+      is_expected.to eq(
+      <<-SQL
+      upper_left_boundary_x >= #{ax}
+      AND upper_left_boundary_y <= #{ay}
+      AND bottom_right_boundary_x <= #{bx}
+      AND bottom_right_boundary_y >= #{by}
+      SQL
+      )
     end
   end
 end
