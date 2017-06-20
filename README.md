@@ -16,7 +16,7 @@
 1) Instalar Docker: https://www.docker.com/community-edition#/download
 2) Clonar repositório:
 ```shell
-$ git clone git@github.com:guilhermeslk/vr-code-challenge.git
+$ git clone git@github.com:guilhermeslk/vr-code-challenge.git && cd vr-code-challenge
 ```
 3) Realizar build do ambiente:
 ```shell
