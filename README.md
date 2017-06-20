@@ -1,24 +1,53 @@
-# README
+# Viva Real - Code Challenge
+## Desafio Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Ferramentas:
+- Ruby 2.3.1
+- Rails 5.1.1
+- RSpec 3.6
+- SQLite
+- Puma
 
-Things you may want to cover:
+### Dependências:
+- Docker (https://www.docker.com/)
+- Docker Compose (https://docs.docker.com/compose/)
 
-* Ruby version
+### Instalação
+1) Instalar Docker: https://www.docker.com/community-edition#/download
+2) Clonar repositório:
+```shell
+$ git clone git@github.com:guilhermeslk/vr-code-challenge.git
+```
+3) Realizar build do ambiente:
+```shell
+$ docker-compose build
+```
+4) Criar banco de dados da API no container web:
+```shell
+$ docker-compose run web rake db:create db:migrate
+```
+5) Rodar seeds para cadastro de províncias:
+```shell
+$ docker-compose run web rake db:seed
+```
+6) Subir ambiente:
+```shell
+$ docker-compose up
+```
 
-* System dependencies
+A aplicação estará rodando em http://localhost:3000 :)
 
-* Configuration
 
-* Database creation
+### Testes:
 
-* Database initialization
+1) Criar banco de dados de testes:
+```shell
+$ docker-compose run rake db:create db:migrate RAILS_ENV=test
+```
 
-* How to run the test suite
+2) Rodar suíte:
+```shell
+$ rspec
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
