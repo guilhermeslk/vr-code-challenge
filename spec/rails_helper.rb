@@ -1,4 +1,5 @@
 require 'database_cleaner'
+require 'simplecov'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -32,4 +33,6 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
+
+   SimpleCov.start 'rails'
 end
