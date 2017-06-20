@@ -24,6 +24,7 @@ class PropertiesByRegionCoordinatesQuery < BaseQueryObject
 
   private
 
+  # @return [Array<Integer>]
   def provinces_ids
     provinces_by_region_coordinates_query.perform.pluck(:id)
   end
