@@ -7,11 +7,13 @@ class PropertiesController < ApplicationController
     respond_with @property, location: @property, status: :created
   end
 
+  # GET /properties/:id
   def show
     @property = Property.find(params[:id])
     respond_with @property, location: @property
   end
 
+  # GET /properties
   def index
     @properties = properties_by_region_coordinates_query(params).perform
 
