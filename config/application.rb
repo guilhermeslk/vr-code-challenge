@@ -24,5 +24,6 @@ module VrCodeChallenge
     config.api_only = true
 
     config.autoload_paths += %W(#{config.root}/app/validators)
+    config.autoload_paths += %W(#{config.root}/app/queries)
   end
 end
