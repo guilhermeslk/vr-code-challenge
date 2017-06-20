@@ -6,7 +6,7 @@ RSpec.describe 'Properties', type: :request do
     params = {
       property: {
         x: Faker::Number.between(0, 1400),
-        y:  Faker::Number.between(0, 1000),
+        y: Faker::Number.between(0, 1000),
         title: Faker::Lorem.sentence,
         price: Faker::Number.decimal(8),
         description: Faker::Lorem.paragraph,
