@@ -34,5 +34,10 @@ RSpec.configure do |config|
     end
   end
 
-   SimpleCov.start 'rails'
+   SimpleCov.start 'rails' do
+     add_filter '.bundle'
+     add_filter 'app/channels'
+     add_filter 'app/jobs'
+     add_filter 'app/mailers'
+   end
 end
