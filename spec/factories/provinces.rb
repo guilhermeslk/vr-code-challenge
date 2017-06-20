@@ -1,6 +1,10 @@
 FactoryGirl.define do
   factory :province do
     name { Faker::Lorem.word }
+    upper_left_boundary_x { Faker::Number.between(0, 1400) }
+    upper_left_boundary_y { Faker::Number.between(0, 1000) }
+    bottom_right_boundary_x { Faker::Number.between(0, 1400)  }
+    bottom_right_boundary_y { Faker::Number.between(0, 1000) }
 
     trait :gode do
       name { 'Gode' }

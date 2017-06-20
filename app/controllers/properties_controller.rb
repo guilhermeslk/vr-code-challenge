@@ -13,12 +13,8 @@ class PropertiesController < ApplicationController
   end
 
   def index
-    @properties = Property.query_by_region_coordinates(
-      ax: params[:ax],
-      ay: params[:ay],
-      bx: params[:bx],
-      by: params[:by]
-    )
+    @properties = properties_by_region_coordinates_query(params).perform
+
     respond_with @properties, location: properties_url
   end
 
@@ -27,5 +23,16 @@ class PropertiesController < ApplicationController
   def property_params
     params.require(:property).permit(:x, :y, :title, :price, :description,
                                      :beds, :baths, :square_meters)
+  end
+
+  # @param params [Hash]
+  # @return [PropertiesByRegionCoordinatesQuery]
+  def properties_by_region_coordinates_query(params)
+    PropertiesByRegionCoordinatesQuery.new(
+      ax: params[:ax],
+      ay: params[:ay],
+      bx: params[:bx],
+      by: params[:by]
+    )
   end
 end
