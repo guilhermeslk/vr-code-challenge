@@ -1,5 +1,5 @@
 class Property < ApplicationRecord
-  after_validation :set_locations, on: [:create]
+  before_save :set_locations, on: [:create]
 
   has_many :locations
   has_many :provinces, through: :locations
@@ -18,15 +18,9 @@ class Property < ApplicationRecord
   validates_with SpotipposBordersValidator,
                  if: proc { |record| record.x.present? && record.y.present? }
 
-  def self.query_by_region_coordinates(ax:, ay:, bx:, by:)
-    regions_ids = Province.query_by_region_coordinates(ax: ax, ay: ay, bx: bx, by: by).pluck(:id)
-
-    joins(:provinces).where("provinces.id IN (:ids)", ids: regions_ids)
-  end
-
   private
 
   def set_locations
-    self.provinces = Province.query_by_property_coordinates(x, y)
+    self.provinces = ProvincesByPropertyCoordinatesQuery.new(x: x, y: y).perform
   end
 end
